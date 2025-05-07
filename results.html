@@ -10,7 +10,7 @@
         <img src="cicgrouplogo.png" alt="cicgrouplogo">
     </div>
     <div class="container">
-        <h1 style="color: Red;">Policy Quote Results</h1>
+        <h1 style="color: rgb(0, 0, 0);">Policy Quote Results</h1>
         
         <div class="results-content">
             <h2>Quote Summary</h2>
@@ -18,13 +18,18 @@
             <p><strong>Age:</strong> <span id="ageResult"></span></p>
             <p><strong>Insurance Type:</strong> <span id="insuranceTypeResult"></span></p>
             <p><strong>Coverage Level:</strong> <span id="coverageLevelResult"></span></p>
-            <p class="quote-amount">Estimated Policy Quote: $<span id="quoteAmount"></span> per month</p>
+            <p class="quote-amount">Estimated Policy Quote: KES <span id="quoteAmount"></span> per month</p>
+            
+            <button onclick="window.location.href='receipt.html'" class="payment-button">
+               <marquee>Print Receipt</marquee>
+            </button>
             
             <button onclick="window.location.href='index.html'" class="submit-button">
                 Calculate Another Quote
             </button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html> 
