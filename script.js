@@ -12,23 +12,27 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('insuranceTypeResult').textContent = formData.insuranceType;
             document.getElementById('coverageLevelResult').textContent = formData.coverageLevel;
             document.getElementById('quoteAmount').textContent = formData.quote.toFixed(2);
+        }
+        return;
+    }
+
+    // Check if we're on the receipt page
+    if (window.location.pathname.includes('receipt.html')) {
+        // Get the stored data from localStorage
+        const formData = JSON.parse(localStorage.getItem('quoteData'));
+        if (formData) {
+            document.getElementById('fullName').textContent = `${formData.firstName} ${formData.lastName}`;
+            document.getElementById('ageResult').textContent = formData.age;
+            document.getElementById('insuranceTypeResult').textContent = formData.insuranceType;
+            document.getElementById('coverageLevelResult').textContent = formData.coverageLevel;
+            document.getElementById('quoteAmount').textContent = formData.quote.toFixed(2);
             
-            // Add countdown timer and redirect
-            let timeLeft = 15;
-            const countdownElement = document.createElement('div');
-            countdownElement.style.textAlign = 'center';
-            countdownElement.style.marginTop = '20px';
-            document.body.appendChild(countdownElement);
+            // Set transaction ID
+            const transactionId = generateTransactionId();
+            document.getElementById('transactionId').textContent = transactionId;
             
-            const countdownInterval = setInterval(() => {
-                timeLeft--;
-                countdownElement.textContent = `Redirecting to main form in ${timeLeft} seconds...`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    window.location.href = 'index.html';
-                }
-            }, 1000);
+            // Set current date
+            document.getElementById('currentDate').textContent = getCurrentDate();
         }
         return;
     }
@@ -71,11 +75,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Show the quote on the main page
                 if (resultDiv) {
-                    resultDiv.textContent = `Your quote is: $${quote.toFixed(2)} `;
+                    resultDiv.textContent = `Your quote is: KES ${quote.toFixed(2)} `;
                     resultDiv.style.display = 'block';
                 }
 
-                // Redirect to results page after 5 seconds
+                // Redirect to results page after 1 second
                 setTimeout(() => {
                     window.location.href = 'results.html';
                 }, 1000);
@@ -90,21 +94,40 @@ document.addEventListener("DOMContentLoaded", function () {
         let baseRate = 0;
         
         if (insuranceType === "auto") {
-            baseRate = 500;
+            baseRate = 50000; // Changed to KES
         } else if (insuranceType === "health") {
-            baseRate = 300;
+            baseRate = 30000; // Changed to KES
         } else {
             throw new Error("Invalid insurance type");
         }
 
         let additionalCharge = 0;
         if (insuranceType === "auto" && age < 25) {
-            additionalCharge += 100;
+            additionalCharge += 10000; // Changed to KES
         }
         if (coverageType === "premium") {
-            additionalCharge += 200;
+            additionalCharge += 20000; // Changed to KES
         }
 
         return baseRate + additionalCharge;
     }
 });
+
+// Function to generate a random transaction ID
+function generateTransactionId() {
+    const timestamp = Date.now().toString();
+    const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    return `TRX${timestamp}${random}`;
+}
+
+// Function to format current date
+function getCurrentDate() {
+    const now = new Date();
+    return now.toLocaleDateString('en-KE', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
