@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insurance Quote calculator</title>
+    <link rel="stylesheet" href="form.css">
+    <link rel="icon" href="cicgrouplogo.png" type="png">
+     <script src="script.js"></script>  
+</head>
+<body>
+    <div class="logo">
+        <img src="cicgrouplogo.png"alt="cicgrouplogo">
+    </div>
+   <div class="background">
+    <img1 src="cicgrouplogo.png" alt="cicgrouplogo">
+   </div>
+    <div class="container">
+        <h1>Fill the Form</h1>
+        <form id="insuranceForm">
+            <label for="firstName"></label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter First Name" required>
+
+            <label for="lastName"></label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name" required>
+
+            <label for="age"></label>
+            <input type="number" id="age" name="age" placeholder="Enter your Age" required>
+
+            <label for="insuranceType"></label>
+            <select id="insuranceType" name="insuranceType" required>
+                <option value="">-- type of insuarance --</option>
+                <option value="auto">Auto</option>
+                <option value="health">Health</option>
+            </select>
+
+            <label for="coverageLevel"></label>
+            <select id="coverageLevel" name="coverageLevel" required>
+                <option value="">-- coverage level --</option>
+                <option value="basic">Basic</option>
+                <option value="premium">Premium</option>
+            </select>
+
+            <button type="submit">Get Quote</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+   
+</body>
+</html>
+</content>
+</create_file>
